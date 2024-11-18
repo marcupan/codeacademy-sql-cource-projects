@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS startups;
+DROP TABLE IF EXISTS hacker_news;
 
 -- Create the hacker_news table
 CREATE TABLE hacker_news (
