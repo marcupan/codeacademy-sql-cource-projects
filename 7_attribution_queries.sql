@@ -58,7 +58,7 @@ WITH first_touch AS (
 )
 SELECT a.campaign, COUNT(*) AS first_touch_count
 FROM attribution_data a
-         JOIN first_touch ft ON a.user_id = ft.user_id AND a.timestamp = ft.first_touch_time
+    JOIN first_touch ft ON a.user_id = ft.user_id AND a.timestamp = ft.first_touch_time
 GROUP BY a.campaign
 ORDER BY first_touch_count DESC;
 
@@ -72,7 +72,7 @@ WITH last_touch AS (
 )
 SELECT a.campaign, COUNT(*) AS last_touch_count
 FROM attribution_data a
-         JOIN last_touch lt ON a.user_id = lt.user_id AND a.timestamp = lt.last_touch_time
+    JOIN last_touch lt ON a.user_id = lt.user_id AND a.timestamp = lt.last_touch_time
 GROUP BY a.campaign
 ORDER BY last_touch_count DESC;
 
