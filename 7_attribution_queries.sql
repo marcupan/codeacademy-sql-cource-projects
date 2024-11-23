@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS attribution_data;
+
 -- Create the attribution_data table
 CREATE TABLE attribution_data (
     user_id INT,
