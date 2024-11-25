@@ -27,7 +27,6 @@ VALUES
     (6, '2024-11-15 12:00:00', 'Campaign B', 'Google', '1 - landing');
 
 -- Task 1: Campaigns and Sources
-
 -- Number of distinct campaigns
 SELECT COUNT(DISTINCT campaign) AS distinct_campaigns
 FROM attribution_data;
@@ -43,13 +42,11 @@ GROUP BY campaign, source
 ORDER BY campaign, occurrences DESC;
 
 -- Task 2: Website Pages
-
 -- Distinct values of page_name
 SELECT DISTINCT page_name
 FROM attribution_data;
 
 -- Task 3: First Touch Attribution
-
 -- Number of first touches for each campaign
 WITH first_touch AS (
     SELECT user_id, MIN(timestamp) AS first_touch_time
@@ -63,7 +60,6 @@ GROUP BY a.campaign
 ORDER BY first_touch_count DESC;
 
 -- Task 4: Last Touch Attribution
-
 -- Number of last touches for each campaign
 WITH last_touch AS (
     SELECT user_id, MAX(timestamp) AS last_touch_time
@@ -77,14 +73,12 @@ GROUP BY a.campaign
 ORDER BY last_touch_count DESC;
 
 -- Task 5: Visitors Who Make a Purchase
-
 -- Count of distinct users who visited the purchase page
 SELECT COUNT(DISTINCT user_id) AS purchasers
 FROM attribution_data
 WHERE page_name = '4 - purchase';
 
 -- Task 6: Last Touch on the Purchase Page by Campaign
-
 -- Number of last touches on the purchase page for each campaign
 WITH last_touch AS (
     SELECT user_id, MAX(timestamp) AS last_touch_time

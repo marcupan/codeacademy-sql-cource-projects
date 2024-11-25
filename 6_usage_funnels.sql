@@ -101,7 +101,6 @@ FROM quiz q
 LIMIT 10;
 
 -- Task 6: Analyze the data
-
 -- Quiz → Home Try-On conversion rate
 SELECT
     ROUND(COUNT(DISTINCT h.user_id)::NUMERIC / COUNT(DISTINCT q.user_id), 2) AS quiz_to_home_try_on_rate
