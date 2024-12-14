@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS transactions;
 -- Create the transactions table
 CREATE TABLE transactions (
     id        SERIAL PRIMARY KEY,
-    date      DATE        NOT NULL,
+    date      DATE NOT NULL,
     currency  VARCHAR(10) NOT NULL,
     money_in  NUMERIC(10, 2),
     money_out NUMERIC(10, 2)
