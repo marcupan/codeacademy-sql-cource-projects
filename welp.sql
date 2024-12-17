@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS places;
+DROP TABLE IF EXISTS reviews;
+
 -- Create the places table
 CREATE TABLE places (
     id             SERIAL PRIMARY KEY,
