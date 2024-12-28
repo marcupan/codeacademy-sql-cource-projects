@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS manufacturers;
+DROP TABLE IF EXISTS parts;
+DROP TABLE IF EXISTS reorder_options;
+DROP TABLE IF EXISTS locations;
+
 -- Create the `manufacturers` table
 CREATE TABLE manufacturers (
     id   SERIAL PRIMARY KEY,
@@ -7,7 +12,7 @@ CREATE TABLE manufacturers (
 -- Create the `parts` table
 CREATE TABLE parts (
     id              SERIAL PRIMARY KEY,
-    description     TEXT               NOT NULL,
+    description     TEXT,
     code            VARCHAR(50) UNIQUE NOT NULL,
     manufacturer_id INT                NOT NULL REFERENCES manufacturers (id)
 );
