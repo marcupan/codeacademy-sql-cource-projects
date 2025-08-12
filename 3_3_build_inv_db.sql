@@ -4,13 +4,15 @@ DROP TABLE IF EXISTS reorder_options;
 DROP TABLE IF EXISTS locations;
 
 -- Create the `manufacturers` table
-CREATE TABLE manufacturers (
+CREATE TABLE manufacturers
+(
     id   SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
 -- Create the `parts` table
-CREATE TABLE parts (
+CREATE TABLE parts
+(
     id              SERIAL PRIMARY KEY,
     description     TEXT,
     code            VARCHAR(50) UNIQUE NOT NULL,
@@ -18,7 +20,8 @@ CREATE TABLE parts (
 );
 
 -- Create the `reorder_options` table
-CREATE TABLE reorder_options (
+CREATE TABLE reorder_options
+(
     id        SERIAL PRIMARY KEY,
     part_id   INT            NOT NULL REFERENCES parts (id),
     quantity  INT            NOT NULL CHECK (quantity > 0),
@@ -26,7 +29,8 @@ CREATE TABLE reorder_options (
 );
 
 -- Create the `locations` table
-CREATE TABLE locations (
+CREATE TABLE locations
+(
     id       SERIAL PRIMARY KEY,
     part_id  INT         NOT NULL REFERENCES parts (id),
     location VARCHAR(50) NOT NULL,
@@ -36,17 +40,15 @@ CREATE TABLE locations (
 
 -- Insert mock data into `manufacturers`
 INSERT INTO manufacturers (id, name)
-VALUES
-    (1, 'Pip Industrial'),
-    (2, 'NNC Manufacturing'),
-    (3, 'Capacitor Corp');
+VALUES (1, 'Pip Industrial'),
+       (2, 'NNC Manufacturing'),
+       (3, 'Capacitor Corp');
 
 -- Insert mock data into `parts`
 INSERT INTO parts (description, code, manufacturer_id)
-VALUES
-    ('5V resistor', 'R5-001', 1),
-    ('3V resistor', 'R3-002', 2),
-    ('Capacitor 10uF', 'C10-003', 3);
+VALUES ('5V resistor', 'R5-001', 1),
+       ('3V resistor', 'R3-002', 2),
+       ('Capacitor 10uF', 'C10-003', 3);
 
 -- Add the missing manufacturer (id = 9)
 INSERT INTO manufacturers (id, name)
@@ -56,7 +58,7 @@ VALUES (9, 'Unknown Manufacturer');
 INSERT INTO parts (id, description, code, manufacturer_id)
 VALUES (54, 'New Part Description', 'V1-009', 9);
 
--- Add a NOT NULL constraint to ensure description in `parts` is filled
+-- Add a NOT NULL constraint to ensure the description in `parts` is filled
 ALTER TABLE parts
     ALTER COLUMN description SET NOT NULL;
 
@@ -68,17 +70,15 @@ WHERE description IS NULL
 
 -- Insert mock data into `reorder_options`
 INSERT INTO reorder_options (part_id, quantity, price_usd)
-VALUES
-    (1, 100, 15.00),
-    (2, 200, 30.00),
-    (3, 50, 10.00);
+VALUES (1, 100, 15.00),
+       (2, 200, 30.00),
+       (3, 50, 10.00);
 
 -- Insert mock data into `locations`
 INSERT INTO locations (part_id, location, qty)
-VALUES
-    (1, 'Shelf A1', 10),
-    (2, 'Shelf B2', 20),
-    (3, 'Shelf C3', 5);
+VALUES (1, 'Shelf A1', 10),
+       (2, 'Shelf B2', 20),
+       (3, 'Shelf C3', 5);
 
 -- Add a unique constraint to `locations` for part_id and location
 ALTER TABLE locations

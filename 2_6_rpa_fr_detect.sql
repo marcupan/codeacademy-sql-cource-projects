@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS transaction_data;
 
 -- Create the transaction_data table
-CREATE TABLE transaction_data (
+CREATE TABLE transaction_data
+(
     transaction_id     SERIAL PRIMARY KEY,
     full_name          VARCHAR(100),
     email              VARCHAR(100),
@@ -12,17 +13,16 @@ CREATE TABLE transaction_data (
 
 -- Insert mock data into transaction_data
 INSERT INTO transaction_data (full_name, email, ip_address, zip, transaction_amount)
-VALUES
-    ('John Doe', 'johndoe@example.com', '120.45.67.89', 30301, 100.50),
-    ('Jane Smith', 'janesmith@example.com', '10.23.45.67', 20252, 150.75),
-    ('Art Vandelay', 'artvandelay@temp_email.com', '192.168.0.1', 90210, 200.00),
-    ('Smokey Bear', 'smokeybear@example.com', '8.8.8.8', 20252, 250.00),
-    ('Sarah Connor', 'sarahconnor@temp_email.com', '10.11.12.13', 10001, 300.25),
-    ('Johnathan Der Smith', 'johnathan.der.smith@example.com', '120.98.76.54', 30305, 75.00),
-    ('Mike Ross', 'mike.ross@temp_email.com', '172.16.254.1', 32000, 50.00),
-    ('Rachel Zane', 'rachelzane@example.com', '10.0.0.1', 90210, 125.75),
-    ('Smokey Bear', 'smokeybear@forest.com', '202.54.77.123', 20252, 85.50),
-    ('John Watson', 'johnwatson@example.com', '120.76.45.34', 30315, 60.00);
+VALUES ('John Doe', 'johndoe@example.com', '120.45.67.89', 30301, 100.50),
+       ('Jane Smith', 'janesmith@example.com', '10.23.45.67', 20252, 150.75),
+       ('Art Vandelay', 'artvandelay@temp_email.com', '192.168.0.1', 90210, 200.00),
+       ('Smokey Bear', 'smokeybear@example.com', '8.8.8.8', 20252, 250.00),
+       ('Sarah Connor', 'sarahconnor@temp_email.com', '10.11.12.13', 10001, 300.25),
+       ('Johnathan Der Smith', 'johnathan.der.smith@example.com', '120.98.76.54', 30305, 75.00),
+       ('Mike Ross', 'mike.ross@temp_email.com', '172.16.254.1', 32000, 50.00),
+       ('Rachel Zane', 'rachelzane@example.com', '10.0.0.1', 90210, 125.75),
+       ('Smokey Bear', 'smokeybear@forest.com', '202.54.77.123', 20252, 85.50),
+       ('John Watson', 'johnwatson@example.com', '120.76.45.34', 30315, 60.00);
 
 -- Verify the data
 SELECT *
@@ -54,7 +54,7 @@ SELECT email
 FROM transaction_data
 WHERE email LIKE '%@temp_email.com';
 
--- Task 6: Find the transaction from an IP starting with ‘120.’ and full name starting with ‘John’
+-- Task 6: Find the transaction from an IP starting with ‘120.’ and the full name starting with ‘John’
 SELECT *
 FROM transaction_data
 WHERE full_name LIKE 'John%'

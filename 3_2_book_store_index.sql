@@ -3,7 +3,8 @@ DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS orders;
 
 -- Create the `customers` table
-CREATE TABLE customers (
+CREATE TABLE customers
+(
     id            SERIAL PRIMARY KEY,
     first_name    VARCHAR(50),
     last_name     VARCHAR(50),
@@ -11,7 +12,8 @@ CREATE TABLE customers (
 );
 
 -- Create the `books` table
-CREATE TABLE books (
+CREATE TABLE books
+(
     id                SERIAL PRIMARY KEY,
     title             VARCHAR(255),
     author            VARCHAR(255),
@@ -20,7 +22,8 @@ CREATE TABLE books (
 );
 
 -- Create the `orders` table
-CREATE TABLE orders (
+CREATE TABLE orders
+(
     id          SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customers (id),
     book_id     INT REFERENCES books (id),
@@ -29,28 +32,25 @@ CREATE TABLE orders (
 
 -- Insert test data into `customers`
 INSERT INTO customers (first_name, last_name, email_address)
-VALUES
-    ('John', 'Doe', 'john.doe@example.com'),
-    ('Jane', 'Smith', 'jane.smith@example.com'),
-    ('Alice', 'Johnson', 'alice.johnson@example.com');
+VALUES ('John', 'Doe', 'john.doe@example.com'),
+       ('Jane', 'Smith', 'jane.smith@example.com'),
+       ('Alice', 'Johnson', 'alice.johnson@example.com');
 
 -- Insert test data into `books`
 INSERT INTO books (title, author, original_language, sales_in_millions)
-VALUES
-    ('The Great Gatsby', 'F. Scott Fitzgerald', 'English', 25.0),
-    ('Les Misérables', 'Victor Hugo', 'French', 50.0),
-    ('Don Quixote', 'Miguel de Cervantes', 'Spanish', 30.0),
-    ('War and Peace', 'Leo Tolstoy', 'Russian', 20.0),
-    ('The Little Prince', 'Antoine de Saint-Exupéry', 'French', 100.0);
+VALUES ('The Great Gatsby', 'F. Scott Fitzgerald', 'English', 25.0),
+       ('Les Misérables', 'Victor Hugo', 'French', 50.0),
+       ('Don Quixote', 'Miguel de Cervantes', 'Spanish', 30.0),
+       ('War and Peace', 'Leo Tolstoy', 'Russian', 20.0),
+       ('The Little Prince', 'Antoine de Saint-Exupéry', 'French', 100.0);
 
 -- Insert test data into `orders`
 INSERT INTO orders (customer_id, book_id, order_date)
-VALUES
-    (1, 1, '2023-12-01 10:00:00'),
-    (1, 2, '2023-12-02 11:00:00'),
-    (2, 3, '2023-12-03 12:00:00'),
-    (3, 4, '2023-12-04 13:00:00'),
-    (3, 5, '2023-12-05 14:00:00');
+VALUES (1, 1, '2023-12-01 10:00:00'),
+       (1, 2, '2023-12-02 11:00:00'),
+       (2, 3, '2023-12-03 12:00:00'),
+       (3, 4, '2023-12-04 13:00:00'),
+       (3, 5, '2023-12-05 14:00:00');
 
 -- Task 1: Inspect tables
 SELECT *
@@ -84,14 +84,14 @@ SELECT original_language, title, sales_in_millions
 FROM books
 WHERE original_language = 'French';
 
--- Task 5: Check the size of the books table
+-- Task 5: Check the size of the book table
 SELECT pg_size_pretty(pg_total_relation_size('books'));
 
 -- Task 6: Create a multicolumn index on books
 CREATE INDEX idx_books_language_title_sales
     ON books (original_language, title, sales_in_millions);
 
--- Task 7: Repeat query to check runtime after creating the index
+-- Task 7: Repeat a query to check runtime after creating the index
 EXPLAIN ANALYZE
 SELECT original_language, title, sales_in_millions
 FROM books
@@ -122,5 +122,5 @@ SELECT NOW();
 CREATE INDEX idx_orders_customer_id ON orders (customer_id);
 CREATE INDEX idx_orders_book_id ON orders (book_id);
 
--- Task 11: Create index for contact queries
+-- Task 11: Create an index for contact queries
 CREATE INDEX idx_customers_first_name_email ON customers (first_name, email_address);

@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS met;
 
 -- Create the met table
-CREATE TABLE met (
+CREATE TABLE met
+(
     id         SERIAL PRIMARY KEY,
     department VARCHAR(255),
     category   VARCHAR(255),
@@ -14,19 +15,18 @@ CREATE TABLE met (
 
 -- Insert mock data into the met table
 INSERT INTO met (department, category, title, artist, date, medium, country)
-VALUES
-    ('American Decorative Arts', 'Furniture', 'Wooden Chair', 'John Doe', '1800', 'Wood', 'United States'),
-    ('American Decorative Arts', 'Celery Vase', 'Intricate Celery Vase', 'Jane Smith', '1875', 'Glass',
-    'United Kingdom'),
-    ('American Decorative Arts', 'Silverware', 'Silver Fork', 'George Wilson', '1900', 'Silver', 'United States'),
-    ('American Decorative Arts', 'Jewelry', 'Gold Necklace', 'Emily Brown', '1750', 'Gold', 'France'),
-    ('American Decorative Arts', 'Pottery', 'Clay Pot', 'Unknown', '1600', 'Clay', 'China'),
-    ('American Decorative Arts', 'Celery Vase', 'Victorian Celery Vase', 'Jane Smith', '1865', 'Glass',
-    'United States'),
-    ('American Decorative Arts', 'Silverware', 'Silver Spoon', 'John Doe', '1920', 'Silver', 'United States'),
-    ('American Decorative Arts', 'Jewelry', 'Gold Ring', 'Emily Brown', '1780', 'Gold', 'Italy'),
-    ('American Decorative Arts', 'Furniture', 'Oak Table', 'Unknown', '1820', 'Wood', 'Germany'),
-    ('American Decorative Arts', 'Jewelry', 'Silver Pendant', 'Emily Brown', '1805', 'Silver', 'Spain');
+VALUES ('American Decorative Arts', 'Furniture', 'Wooden Chair', 'John Doe', '1800', 'Wood', 'United States'),
+       ('American Decorative Arts', 'Celery Vase', 'Intricate Celery Vase', 'Jane Smith', '1875', 'Glass',
+        'United Kingdom'),
+       ('American Decorative Arts', 'Silverware', 'Silver Fork', 'George Wilson', '1900', 'Silver', 'United States'),
+       ('American Decorative Arts', 'Jewelry', 'Gold Necklace', 'Emily Brown', '1750', 'Gold', 'France'),
+       ('American Decorative Arts', 'Pottery', 'Clay Pot', 'Unknown', '1600', 'Clay', 'China'),
+       ('American Decorative Arts', 'Celery Vase', 'Victorian Celery Vase', 'Jane Smith', '1865', 'Glass',
+        'United States'),
+       ('American Decorative Arts', 'Silverware', 'Silver Spoon', 'John Doe', '1920', 'Silver', 'United States'),
+       ('American Decorative Arts', 'Jewelry', 'Gold Ring', 'Emily Brown', '1780', 'Gold', 'Italy'),
+       ('American Decorative Arts', 'Furniture', 'Oak Table', 'Unknown', '1820', 'Wood', 'Germany'),
+       ('American Decorative Arts', 'Jewelry', 'Silver Pendant', 'Emily Brown', '1805', 'Silver', 'Spain');
 
 -- Task 1: Explore the met table
 SELECT *
@@ -73,11 +73,11 @@ ORDER BY medium_count DESC;
 
 -- Bonus: Categorize medium as 'Gold' or 'Silver' and count them
 SELECT CASE
-       WHEN medium LIKE '%gold%' THEN 'Gold'
-       WHEN medium LIKE '%silver%' THEN 'Silver'
-       ELSE NULL
-       END  AS Bling,
-    COUNT(*) AS bling_count
+           WHEN medium LIKE '%gold%' THEN 'Gold'
+           WHEN medium LIKE '%silver%' THEN 'Silver'
+           ELSE NULL
+           END  AS Bling,
+       COUNT(*) AS bling_count
 FROM met
 WHERE medium LIKE '%gold%'
    OR medium LIKE '%silver%'

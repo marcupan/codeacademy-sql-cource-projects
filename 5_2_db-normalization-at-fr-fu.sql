@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS store;
 
 -- Create the `store` table with the correct structure
-CREATE TABLE store (
+CREATE TABLE store
+(
     order_id       SERIAL PRIMARY KEY,
     order_date     DATE           NOT NULL,
     customer_id    INT            NOT NULL,
@@ -114,7 +115,7 @@ ALTER TABLE orders
 ALTER TABLE orders_items
     ADD FOREIGN KEY (item_id) REFERENCES items (item_id);
 
--- Task 13: Add foreign key from `orders_items` to `orders`
+-- Task 13: Add a foreign key from `orders_items` to `orders`
 ALTER TABLE orders_items
     ADD FOREIGN KEY (order_id) REFERENCES orders (order_id);
 

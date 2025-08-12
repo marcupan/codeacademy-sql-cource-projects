@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS orders;
 
--- Create the orders table
-CREATE TABLE orders (
+-- Create the order's table
+CREATE TABLE orders
+(
     id                   SERIAL PRIMARY KEY,
     order_date           DATE         NOT NULL,
     item_name            VARCHAR(255) NOT NULL,
@@ -10,19 +11,18 @@ CREATE TABLE orders (
     user_id              INT          NOT NULL
 );
 
--- Insert test data into the orders table
+-- Insert test data into the order's table
 INSERT INTO orders (order_date, item_name, special_instructions, restaurant_id, user_id)
-VALUES
-    ('2024-01-01', 'Cheeseburger', 'Extra sauce, no pickles', 1, 101),
-    ('2024-01-02', 'Veggie Burger', 'No sauce', 1, 102),
-    ('2024-01-03', 'Chicken Burger', 'Leave at the door', 2, 103),
-    ('2024-01-04', 'Double Cheeseburger', NULL, 1, 104),
-    ('2024-01-05', 'Bacon Burger', 'Extra crispy bacon', 2, 105),
-    ('2024-01-06', 'Fries', 'Extra ketchup', 1, 101),
-    ('2024-01-07', 'Milkshake', 'Put it in a box', 1, 106),
-    ('2024-01-08', 'Salad', NULL, 2, 107),
-    ('2024-01-09', 'Hotdog', 'Door delivery only', 2, 108),
-    ('2024-01-10', 'Fish Burger', 'Box it up, no onions', 1, 109);
+VALUES ('2024-01-01', 'Cheeseburger', 'Extra sauce, no pickles', 1, 101),
+       ('2024-01-02', 'Veggie Burger', 'No sauce', 1, 102),
+       ('2024-01-03', 'Chicken Burger', 'Leave at the door', 2, 103),
+       ('2024-01-04', 'Double Cheeseburger', NULL, 1, 104),
+       ('2024-01-05', 'Bacon Burger', 'Extra crispy bacon', 2, 105),
+       ('2024-01-06', 'Fries', 'Extra ketchup', 1, 101),
+       ('2024-01-07', 'Milkshake', 'Put it in a box', 1, 106),
+       ('2024-01-08', 'Salad', NULL, 2, 107),
+       ('2024-01-09', 'Hotdog', 'Door delivery only', 2, 108),
+       ('2024-01-10', 'Fish Burger', 'Box it up, no onions', 1, 109);
 
 -- 1. What are the column names?
 SELECT *
@@ -66,15 +66,15 @@ WHERE special_instructions LIKE '%box%';
 
 -- 9. Return order ids along with special instructions
 -- Rename id as '#' and special_instructions as 'Notes'
-SELECT id AS "#",
-   special_instructions AS "Notes"
+SELECT id                   AS "#",
+       special_instructions AS "Notes"
 FROM orders
 WHERE special_instructions LIKE '%box%';
 
 -- 10. Query the customer who made the phrase
 -- Return the item_name, restaurant_id, and user_id
 SELECT item_name,
-    restaurant_id,
-    user_id
+       restaurant_id,
+       user_id
 FROM orders
 WHERE special_instructions LIKE '%box%';
