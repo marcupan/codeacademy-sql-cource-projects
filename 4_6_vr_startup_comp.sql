@@ -112,22 +112,22 @@ WHERE personality = (SELECT personality
                      LIMIT 1);
 
 -- Task 10: For each employee, list their incompatibilities
-SELECT last_name,
-       first_name,
-       personality,
-       project_name,
+SELECT e.last_name,
+       e.first_name,
+       e.personality,
+       p.project_name,
        CASE
-           WHEN personality = 'INFP' THEN (SELECT COUNT(*)
-                                           FROM employees
-                                           WHERE personality IN
-                                                 ('ISFP', 'ESFP', 'ISTP', 'ESTP', 'ISFJ', 'ESFJ', 'ISTJ', 'ESTJ'))
-           WHEN personality = 'ISFP' THEN (SELECT COUNT(*)
-                                           FROM employees
-                                           WHERE personality IN ('INFP', 'ENFP', 'INFJ'))
-           -- Add additional personality conditions here as needed
+           WHEN e.personality = 'INFP' THEN (SELECT COUNT(*)
+                                             FROM employees x
+                                             WHERE x.personality IN
+                                                   ('ISFP', 'ESFP', 'ISTP', 'ESTP', 'ISFJ', 'ESFJ', 'ISTJ', 'ESTJ')
+                                               AND x.employee_id <> e.employee_id)
+           WHEN e.personality = 'ISFP' THEN (SELECT COUNT(*)
+                                             FROM employees x
+                                             WHERE x.personality IN ('INFP', 'ENFP', 'INFJ')
+                                               AND x.employee_id <> e.employee_id)
            ELSE 0
            END AS incompatibilities
-FROM employees
-         LEFT JOIN projects
-                   ON employees.current_project = projects.project_id
+FROM employees e
+         LEFT JOIN projects p ON e.current_project = p.project_id
 LIMIT 5;

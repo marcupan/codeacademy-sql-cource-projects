@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS subscriptions;
 
--- Create the subscription's table
+-- Create the subscription table
 CREATE TABLE subscriptions
 (
     id                 SERIAL PRIMARY KEY,
